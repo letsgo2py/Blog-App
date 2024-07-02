@@ -26,4 +26,5 @@ Thats it!!
 Using the Tech stacks:
 1. NodeJS
 2. ExpressJS
-3. MongoDB 
+3. EJS
+4. MongoDB 
