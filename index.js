@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
@@ -11,7 +13,9 @@ const blogRoute = require("./routes/blog");
 const app = express();
 const PORT = 3000;
 
-mongoose.connect("mongodb://127.0.0.1:27017/myblogs").then(() => console.log("Mongoose Connected!"))
+const MONGO_URL = process.env.MONGO_URI;
+
+mongoose.connect(MONGO_URL).then(() => console.log("Mongoose Connected!"))
 
 app.use(express.static('public'));
 app.use(express.json());
