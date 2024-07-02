@@ -1,0 +1,82 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+}
+
+.head{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 2rem;
+    gap: 4rem;
+}
+
+#top{
+    padding: 10px;
+    border: dotted 3px rgb(255, 128, 0);
+}
+
+#title{
+    color: rgb(89, 89, 219);
+    text-decoration: underline;
+}
+
+.text{
+    overflow-wrap: break-word; /* Ensures words will break to fit within the container */
+    word-wrap: break-word; /* Deprecated but still supported in many browsers for compatibility */
+    word-break: break-word; /* Ensures proper word breaking */
+    white-space: normal; /* Ensures the text will wrap */
+    color: rgb(72, 69, 69);
+}
+
+.inner{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border: solid 3px black;
+    border-radius: 0.75rem;
+    padding: 2rem;
+    width: 90vw;
+    overflow-y: visible;  /* Allow height to expand */
+
+}
+
+.inner-head{
+    display: flex;
+    gap: 4rem;
+    border-bottom: solid grey 2px;
+    padding: 10px;
+}
+
+.inner-head img{
+    width: 8rem;
+    height: 8rem;
+    border: solid 4px rgb(89, 124, 208);
+    border-radius: 1rem;
+    object-fit: cover;
+}
+
+.btns{
+    gap: 50px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 10px;
+    margin-bottom: 4px;
+}
+
+.btns button{
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+.public{
+    padding: 4px;
+    border-radius: 4px;
+}
+
+span{
+    font-size: 20px;
+}

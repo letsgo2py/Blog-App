@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/topic.css" />
+    <title>Add a topic</title>
+</head>
+<body>
+    <h1>Adding A Topic into the List</h1>
+    <div class="add">
+        <form method="POST" action="/blog/add-topic">
+            <label for="topic">Add New Topic to Write About</label>
+            <div>
+                <input id = "topic" type="text" name="topic" placeholder="Write a new topic..." value="" >
+                <button type="submit" name="submit">Add</button>            
+            </div>
+        </form>
+    </div>
+</body>
+</html>

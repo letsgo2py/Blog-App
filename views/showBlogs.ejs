@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/styles/nav.css" />
+    <link rel="stylesheet" href="/styles/showblog.css" />
+    <title>All Blogs</title>
+</head>
+<body>
+
+    <div class="navbar">
+        <div class="nav-left"> 
+            <h1>Blog App</h1>
+        </div>
+        <div class="nav-right">
+            <a href="/blog/feed">Feed</a>
+            <a href="/">Home</a>
+            <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+            </svg></a>
+        </div>
+    </div>
+        
+    <div class="blogs-div">
+        <div class="blog-head">
+            <h2>Personal Blogs</h2>
+            <p><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
+                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                </svg>Tick the checkbox to make your blog public</p>
+        </div>
+                    
+        <div class="all-blogs">
+            <% if(locals.blogs) {%>
+                <% blogs.forEach(blog => { %>
+                    <div class="card">
+                        <% if (blog.coverImageURL) { %>
+                            <img class = coverimages id = <%= blog._id %> alt = "cover Image" src = <%= blog.coverImageURL %> />                       
+                        <% } else{%>
+                            <form action="/blog/uploads/<%= blog._id %>" id = <%= blog._id %> method = "POST" enctype="multipart/form-data">
+                                <input type="file" name="blog-cover"/>
+                                <button type="submit">Upload</button>
+                            </form>                   
+                        <%}%>                       
+                        <div class="card-body">
+                            <h5 class="card-title"><%= blog.title %></h5>
+                            <% if(blog.content.length > 60){ %>
+                                <p class="card-text"><%= blog.content.substr(0, 60) %>...</p>
+                            <% }else{ %>
+                                <p class="card-text"><%= blog.content %></p>
+                            <% } %>
+                            <div class="btn-div">
+                                <a href="/blog/<%= blog._id %>" id = "view-btn" class="btn btn-primary">View</a>
+                                <a href="/blog/delete/<%= blog._id %>" id = "delete-btn" class="btn btn-primary">Delete</a>
+                                <input type="checkbox" id="<%= blog._id %>" name="public" <%= blog.isPublic ? 'checked' : '' %> >
+                            </div>
+                        </div>
+                    </div>
+                <% }) %>
+            <%}else{%>
+                <h1>No Blogs have been add yet!</h1>
+            <%}%>  
+        </div>
+    </div>
+    
+    <script>        
+        function postCheckboxState(url, data) {
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        }
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const blogId = this.getAttribute('id');
+                const isChecked = this.checked;
+                postCheckboxState(`/blog/public/${blogId}`, { public: isChecked });
+            });
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+        const imgs = document.querySelectorAll('img');
+
+            imgs.forEach(img => {
+                img.addEventListener('mouseenter', function() {
+                    const img_id = this.getAttribute('id');
+                    const form = document.querySelector('#' + img_id)
+                    if (form) {
+                        form.style.display = 'block';
+                        this.style.display = 'none';
+                    }
+                });
+
+                img.addEventListener('mouseleave', () => {
+                    const img_id = this.getAttribute('id');
+                    const form = document.querySelector('#' + img_id);
+                    if (form) {
+                        form.style.display = 'none';
+                        this.style.display = 'block';
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
+
+

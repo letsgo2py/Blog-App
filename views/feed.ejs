@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/feed.css" />
+    <title>My Blog - FEED</title>
+</head>
+<body>
+    <div class="nav">
+        <h1>My Feed</h1>
+        <button class="home-btn"><a href="/"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h9a1.5 1.5 0 0 0 1.5-1.5V8.207l.646.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM13 7.207V13.5a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5V7.207l5-5z"/>
+            </svg></a>
+        </button>  
+    </div>
+
+    <div class="topics">
+        <a href="/blog/feed">All</a>
+        <% if(locals.topics){ %>
+            <% topics.forEach(topic => { %>
+              <a id="<%=topic.name %>" href="/blog/feed/<%=topic.name %>"><%= topic.name %></a>
+            <% }) %>
+        <% } %>
+    </div>
+
+    <% if(locals.data){ %>
+        <% if (data.length === 0) { %>
+         <h1>No Blogs Added Yet</h1>
+        <% } %>
+        <% data.forEach(blog => { %>        
+            <div class="feed">
+                <div class="feed-content">
+                    <img src=<%= blog.coverImageURL%> alt="Feed Image" class="feed-image">
+                    <div>
+                        <h5 class="user-name"><%= blog.username %></h5>
+                        <h2><%= blog.title %></h2>
+                        <p><%= blog.content %></p>
+                    </div>
+                </div>
+                <div class="feed-btn">
+                    <button id="likeButton" class="like-button"><a href="/blog/like/<%= blog._id %>">❤ Like</a></button>
+                </div>
+            </div> 
+        <% }) %>
+    <% }else{ %>
+        <h1>No Blogs have been Added</h1>
+    <% } %>
+    <!-- <div class="feed">
+        <div class="feed-content">
+            <img src="/uploads/1717138332540-Photo.png" alt="Feed Image" class="feed-image">
+            <p>This is some feed content. It describes something interesting.</p>
+        </div>
+        <div class="feed-btn">
+            <button class="like-button">Like</button>
+        </div>
+    </div> -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const topics = document.querySelectorAll(".topics a");
+
+            // Check localStorage to see if a topic is highlighted
+            const highlightedTopicId = localStorage.getItem('highlightedTopic');
+            if (highlightedTopicId) {
+                const highlightedTopic = document.getElementById(highlightedTopicId);
+                if (highlightedTopic) {
+                    highlightedTopic.classList.add("highlight");
+                }
+            }
+
+            topics.forEach(t => {
+                t.addEventListener("click", (event) => {
+                    // Store the id of the clicked topic in localStorage
+                    localStorage.setItem('highlightedTopic', t.id);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

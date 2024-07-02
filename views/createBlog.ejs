@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/styles/nav.css" />
+    <link rel="stylesheet" href="/styles/createblog.css" />
+    <title>Create Blog</title>
+</head>
+<body> 
+  <div class="navbar">
+    <div class="nav-left">
+      <h1>Blog App</h1>
+    </div>
+    <div class="nav-right">
+      <a href="/blog/show">My Blogs</a>
+      <a href="/feed">Feed</a>
+      <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+      </svg></a>
+    </div>
+  </div>
+
+  <% if (locals.req_error) { %>
+    <div class="alert alert-danger" role="alert">
+      <%= req_error %>
+    </div>
+  <% } %>
+  
+  <div class="container">
+    <div class="middle-content">
+      <div class="sidebar">
+        <div>
+          <button href = "/blog/show" class="new-btn">New<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2"/>
+          </svg></button>     
+        </div>
+
+        <div class="funcs">
+          <div class="func-div">
+            <p>Colors:</p>
+            <div>
+              <button class="clr-btn black-btn" id="black"></button>
+              <button class="clr-btn red-btn" id="red"></button>
+              <button class="clr-btn blue-btn" id="blue"></button>
+            </div>
+          </div>
+          <div class="func-div">
+            <p>Font:</p>
+            <div>
+              <button class="ft-btn" id ="18">18</button>
+              <button class="ft-btn" id ="20">20</button>
+              <button class="ft-btn" id ="25">25</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="blogs-area">
+        <form action="/blog/show" method="POST">
+          <div class="topic-txt">
+            <label for="title">Topic Name:</label>
+            <input type="text" name="title">
+          </div>
+          <div class="blog-div">
+            <label for="content">Write your blog:</label><br>
+            <textarea id="content" name="content"></textarea><br>
+          </div>
+          <div>
+            <input id = "sub-btn" class="btn btn-primary" type="submit" value="Submit">
+          </div>       
+        </form>        
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    const color_btns = document.querySelectorAll(".clr-btn")
+    const font_sizes = document.querySelectorAll(".ft-btn")
+
+    color_btns.forEach((btn) =>{
+      btn.addEventListener("click", () => {
+        document.getElementById("content").style.color = btn.id
+      })
+    })
+
+    font_sizes.forEach((btn) =>{
+      btn.addEventListener("click", () => {
+        document.getElementById("content").style.fontSize = btn.id + "px"
+      })
+    })
+
+  </script>
+</body>
+</html>

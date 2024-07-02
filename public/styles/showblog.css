@@ -1,0 +1,56 @@
+.blogs-div{
+    height: 80vh;
+    margin: 10px;
+}
+
+.all-blogs {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 300px auto;
+    gap: 10px;
+    padding: 20px;
+}
+
+.card{
+    border: 1px solid blue;
+    width: 18rem;
+    height: 18rem;
+    word-wrap: break-word; /* Ensures long words break to avoid overflow */
+    /* height: auto; */
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.btn-div{
+    display: flex;
+    justify-content: space-between;
+    margin-top: auto;
+}
+
+#view-btn{
+    background-color: rgb(248, 127, 6);
+}
+
+#delete-btn{
+    background-color: rgb(219, 146, 146);
+}
+
+
+.coverimages {
+    height: 8rem;
+    width: 18rem;
+    object-fit: contain;
+}
+
+.blog-head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.blog-head h2 {
+    font-weight: bolder;
+}

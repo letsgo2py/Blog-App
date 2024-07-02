@@ -1,0 +1,166 @@
+*{
+    padding: 0;
+    margin: 0;
+    /* font-family: 'Courier New', Courier, monospace; */
+    font-family: 'Roboto', sans-serif;
+    /* font-family: 'Lato', 'Open Sans', sans-serif; */
+    /* font-family: 'Montserrat', sans-serif; */
+  
+}
+
+/* other color #00D0FF */
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  padding: 10px;
+  background-color: #FF6C23;
+  color: white;
+}
+
+.nav-left {
+  flex: 1; /* Takes as much space as possible */
+}
+
+.nav-right {
+  display: flex;
+}
+
+.nav-right a{
+  padding-right: 10px;
+  margin-left: 30px; /* Adjust spacing between links */
+  color: #fff;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.top-header{
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.create-btn{
+  background-color: black;
+} 
+
+.main-txt {
+  font-size: 4rem;
+}
+
+.body-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20rem;
+  height: 40rem;
+  background-color: bisque;
+  color: red;
+  /* font-weight: 800; */
+}
+
+
+.main-content{
+  display:flex;
+  margin-top: 2px;
+  /* gap: 10rem; */
+  padding-left: 10%;
+  padding-right: 10%;
+  justify-content: space-between;
+}
+
+.topic-list{
+    background-color: black;
+    color: white;
+    border: solid 1px grey;
+    
+}
+
+.tablelist{
+    height: 30rem;
+    width: 40%;
+    /* background-color: rgb(192, 146, 235); */
+    border: solid 2px blue;
+    border-radius: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    padding-top: 2px;
+}
+
+.right-side{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 3rem;
+    height: 30rem;
+    width: 60%;
+    /* background-color: rgb(86, 244, 115); */
+    /* border: solid 2px blue; */
+    border: solid 2px grey;
+    border-radius: 2%;
+    font-weight: bold;
+}
+
+.add-sym{
+  color: black;
+  height: 10rem;
+  width: 10rem;
+}
+
+.topic-btn {
+  background-color: blue;
+  font-size: 1.5rem;
+  border-radius: 5%;
+}
+
+.start-btn {
+  background-color: blue;
+  font-size: 1.5rem;
+  border-radius: 5%;
+}
+
+.side-group{
+  display: flex;
+  flex-direction: column;
+  background-color: #111;
+  color: white;
+  gap: 10px;
+  padding: 5px;
+  width: 250px;
+  border-radius: 10px;
+  overflow-y: auto; /* Make sidebar scrollable */
+  max-height: 480px;
+  box-shadow: 0 0 10px rgb(255, 111, 0), 0 0 20px rgb(255, 111, 0), 0 0 30px rgb(255, 111, 0), 0 0 40px rgb(255, 111, 0);
+
+}
+
+.side-group a{
+  text-decoration: none;
+  color: white;
+  border: 1px solid white;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.side-group a:hover {
+  color: #f1de0d;
+}
+
+footer{
+  background-color: #FFF6E9;
+}
+
+.card-cover {
+  background-size: cover; /* Ensures the image covers the entire div */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
+  transition: background-image 0.3s ease; /* Smooth transition effect */
+}
+
+.card-cover:hover{
+  background-image: none;
+  background-color: #020b54;
+}

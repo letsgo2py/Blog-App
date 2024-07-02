@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('./partials/head.ejs') %>
+    <link rel="stylesheet" href="/styles/style.css" />
+  </head>
+  <body>
+
+    <div class="navbar">
+      <div class="nav-left">
+        <h1>Blog App</h1>
+      </div>
+      <div class="nav-right">
+        <a href="/blog/show">My Blogs</a>
+        <a href="/blog/feed">Feed</a>
+        <a href="/user/register">Register</a>
+        <a href="/user/login">Login</a>
+      </div>
+    </div>
+    
+    <div class="container-fluid">
+      <div class="top-header row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img src="/images/hero-img.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+        </div>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold text-body-emphasis lh-1 mb-3 main-txt">Let's Write Your Own Story</h1>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="/blog/create"><button type="button" class="btn btn-dark btn-lg px-4 me-md-2 create-btn" fdprocessedid="rbo61o">Create Blog</button></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 mx-5">
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/images/laptop.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Organize your thoughts</h3>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/images/pen.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Easy to write</h3>
+            </div>
+          </div>
+        </div>
+  
+        <div class="col">
+          <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/images/specs.jpg');">
+            <div class="d-flex flex-column h-100 p-5 pb-3 text-shadow-1">
+              <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Save Paper, Let your ideas coming</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    <div class="main-content mt-5">
+      <div class="side-group">
+        <h2>Topics</h2>
+        <a href="blog/feed">All</a>
+        <% if(locals.topics){ %>
+          <% topics.forEach(topic => { %>
+            <a href="/blog/feed/<%= topic.name %>"><%= topic.name %></a>
+          <% }) %>
+        <% } %>
+      </div>
+      <div class="right-side">
+        <p>Create Your</p>
+        <p>Own Topic</p>
+        <a href="/create-topic"><svg class = "add-sym" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14m0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16"/>
+          <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4"/>
+        </svg></a>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <%- include('./partials/footer.ejs') %>
+
+  </div>
+    </body>
+    </html>
