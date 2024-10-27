@@ -13,6 +13,8 @@ const blogRoute = require("./routes/blog");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+// MONGO_URI="mongodb://127.0.0.1:27017/myblogs"
+
 const MONGO_URL = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URL).then(() => console.log("Mongoose Connected!"))
