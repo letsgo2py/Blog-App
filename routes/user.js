@@ -10,6 +10,13 @@ router.get("/login", (req, res) => {
     res.render('login.ejs')
 })
 
+router.get('/logout', (req, res) => {
+    // Clear the cookie
+    res.clearCookie('uid');
+    // Redirect to the home page
+    res.redirect('/');
+});
+
 // router.post("/login", async (req, res) => {
 //     const { email, password } = req.body;
 //     try {

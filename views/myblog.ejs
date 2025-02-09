@@ -3,6 +3,9 @@
 <head>
     <%- include('./partials/head.ejs') %>
     <link rel="stylesheet" href="/styles/myblog.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lavishly+Yours&family=Playwrite+AU+SA:wght@100..400&family=Playwrite+DE+Grund:wght@100..400&family=Roboto+Slab:wght@100..900&family=Teko:wght@300..700&display=swap" rel="stylesheet">
     <title>My Blog</title>
 </head>
 <body>
@@ -11,20 +14,17 @@
         <% if(locals.blog) {%>
         <div class="main">
             <div class="btns">
-                <% if (blog.isPublic) { %>                   
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Category
-                        </button>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">None</a></li>
-                            <% topics.forEach(topic => { %>
-                                <li><a class="dropdown-item" href="/blog/topic/<%= blog._id %>/<%= topic.name %>"><%= topic.name %></a></li>
-                            <% }) %>
-                        </ul>
-                    </div>    
-                <% } %>
-                <button class="public">Make Public</button>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Category
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">None</a></li>
+                        <% topics.forEach(topic => { %>
+                            <li><a class="dropdown-item" href="/blog/topic/<%= blog._id %>/<%= topic.name %>"><%= topic.name %></a></li>
+                        <% }) %>
+                    </ul>
+                </div>    
             </div>
             <div class="inner">
                     <div class="inner-head">

@@ -10,7 +10,7 @@
 
     <div class="navbar">
         <div class="nav-left"> 
-            <h1>Blog App</h1>
+            <h1>Bloggish</h1>
         </div>
         <div class="nav-right">
             <a href="/blog/feed">Feed</a>
@@ -32,38 +32,55 @@
                     
         <div class="all-blogs">
             <% if(locals.blogs) {%>
-                <% blogs.forEach(blog => { %>
-                    <div class="card">
-                        <% if (blog.coverImageURL) { %>
-                            <img class = coverimages id = <%= blog._id %> alt = "cover Image" src = <%= blog.coverImageURL %> />                       
-                        <% } else{%>
-                            <form action="/blog/uploads/<%= blog._id %>" id = <%= blog._id %> method = "POST" enctype="multipart/form-data">
-                                <input type="file" name="blog-cover"/>
-                                <button type="submit">Upload</button>
-                            </form>                   
-                        <%}%>                       
-                        <div class="card-body">
-                            <h5 class="card-title"><%= blog.title %></h5>
-                            <% if(blog.content.length > 60){ %>
-                                <p class="card-text"><%= blog.content.substr(0, 60) %>...</p>
-                            <% }else{ %>
-                                <p class="card-text"><%= blog.content %></p>
-                            <% } %>
-                            <div class="btn-div">
-                                <a href="/blog/<%= blog._id %>" id = "view-btn" class="btn btn-primary">View</a>
-                                <a href="/blog/delete/<%= blog._id %>" id = "delete-btn" class="btn btn-primary">Delete</a>
-                                <input type="checkbox" id="<%= blog._id %>" name="public" <%= blog.isPublic ? 'checked' : '' %> >
+                <% if (Object.keys(locals.blogs).length === 0) { %>
+                    <div class="no-blogs">
+                        <div class="tenor-gif-embed" data-postid="17677605298992158768" data-share-method="host" data-aspect-ratio="1.10092" data-width="100%"><a href="https://tenor.com/view/checking-mail-checking-mailbox-checking-snailmail-im-waiting-waiting-for-mail-gif-17677605298992158768">Checking Mail Checking Mailbox GIF</a>from <a href="https://tenor.com/search/checking+mail-gifs">Checking Mail GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+                        <h1>No Blogs</h1>
+                    </div>
+                <% } else{ %>
+                    <% blogs.forEach(blog => { %>
+                        <div class="card">
+                            <% if (blog.coverImageURL) { %>
+                                <img class = coverimages id = <%= blog._id %> alt = "cover Image" src = <%= blog.coverImageURL %> />                       
+                            <% } else{%>
+                                <form action="/blog/uploads/<%= blog._id %>" id = <%= blog._id %> method = "POST" enctype="multipart/form-data">
+                                    <input type="file" name="blog-cover"/>
+                                    <button type="submit">Upload</button>
+                                </form>                   
+                            <%}%>                       
+                            <div class="card-body">
+                                <h5 class="card-title"><%= blog.title %></h5>
+                                <% if(blog.content.length > 60){ %>
+                                    <p class="card-text"><%= blog.content.substr(0, 60) %>...</p>
+                                <% }else{ %>
+                                    <p class="card-text"><%= blog.content %></p>
+                                <% } %>
+                                <div class="btn-div">
+                                    <a href="/blog/<%= blog._id %>" id = "view-btn" class="btn btn-primary">View</a>
+                                    <a href="/blog/delete/<%= blog._id %>" id = "delete-btn" class="btn btn-primary">Delete</a>
+                                    <input type="checkbox" id="<%= blog._id %>" name="public" <%= blog.isPublic ? 'checked' : '' %> >
+                                </div>
                             </div>
                         </div>
-                    </div>
-                <% }) %>
+                    <% }) %>
+                <%}%>
             <%}else{%>
                 <h1>No Blogs have been add yet!</h1>
             <%}%>  
         </div>
     </div>
     
-    <script>        
+    <script> 
+    
+        function validateFile(blogId) {
+            var fileInput = document.getElementById('blog-cover-' + blogId);
+            if (!fileInput.files.length) {
+                alert("Please select a file before uploading!");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+
         function postCheckboxState(url, data) {
             fetch(url, {
                 method: 'POST',
@@ -89,27 +106,43 @@
             });
         });
 
-        document.addEventListener('DOMContentLoaded', () => {
-        const imgs = document.querySelectorAll('img');
+        // document.addEventListener('DOMContentLoaded', () => {
+        // const imgs = document.querySelectorAll('img');
 
-            imgs.forEach(img => {
-                img.addEventListener('mouseenter', function() {
-                    const img_id = this.getAttribute('id');
-                    const form = document.querySelector('#' + img_id)
-                    if (form) {
-                        form.style.display = 'block';
-                        this.style.display = 'none';
-                    }
-                });
+        //     imgs.forEach(img => {
+        //         img.addEventListener('mouseenter', function() {
+        //             const img_id = this.getAttribute('id');
+        //             const form = document.querySelector('#' + img_id)
+        //             if (form) {
+        //                 form.style.display = 'block';
+        //                 this.style.display = 'none';
+        //             }
+        //         });
 
-                img.addEventListener('mouseleave', () => {
-                    const img_id = this.getAttribute('id');
-                    const form = document.querySelector('#' + img_id);
-                    if (form) {
-                        form.style.display = 'none';
-                        this.style.display = 'block';
-                    }
-                });
+        //         img.addEventListener('mouseleave', () => {
+        //             const img_id = this.getAttribute('id');
+        //             const form = document.querySelector('#' + img_id);
+        //             if (form) {
+        //                 form.style.display = 'none';
+        //                 this.style.display = 'block';
+        //             }
+        //         });
+        //     });
+        // });
+
+        document.querySelectorAll('.card-upper').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const img = card.querySelector('img.coverimages');
+                const form = card.querySelector('form');
+                if (img) img.style.display = 'none';
+                if (form) form.style.display = 'block';
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const img = card.querySelector('img.coverimages');
+                const form = card.querySelector('form');
+                if (img) img.style.display = 'block';
+                if (form) form.style.display = 'none';
             });
         });
 

@@ -9,18 +9,18 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    margin: 2rem;
-    gap: 4rem;
 }
 
 #top{
     padding: 10px;
-    border: dotted 3px rgb(255, 128, 0);
+    font-size: 5rem;
+    font-family: "Playwrite DE Grund", serif;
+    font-weight: 900;
 }
 
 #title{
     color: rgb(89, 89, 219);
-    text-decoration: underline;
+    color: rgb(12, 12, 128);
 }
 
 .text{
@@ -72,11 +72,7 @@
     cursor: pointer;
 }
 
-.public{
-    padding: 4px;
-    border-radius: 4px;
-}
-
 span{
     font-size: 20px;
+    color: rgb(4, 131, 4);
 }

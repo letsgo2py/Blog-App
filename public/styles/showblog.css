@@ -1,14 +1,17 @@
 .blogs-div{
-    height: 80vh;
+    /* height: 80vh; */
     margin: 10px;
 }
 
 .all-blogs {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr ;
-    grid-template-rows: 300px auto;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr ;
+    grid-template-rows: 300px auto; */
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-auto-rows: auto;
     gap: 10px;
     padding: 20px;
+    place-items: center;
 }
 
 .card{
@@ -16,17 +19,25 @@
     width: 18rem;
     height: 18rem;
     word-wrap: break-word; /* Ensures long words break to avoid overflow */
-    /* height: auto; */
+    box-shadow: 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
 }
 
 .card-body {
+    height: 50%;
+    width: 100%;
+    top: 50%;
+    position: absolute;
     display: flex;
     flex-direction: column;
+    /* background-color: rgb(186, 142, 189); */
+    background-color: rgb(144, 117, 117);
 }
 
 .btn-div{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     margin-top: auto;
 }
 
@@ -53,4 +64,54 @@
 
 .blog-head h2 {
     font-weight: bolder;
+}
+
+.no-blogs{
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+}
+
+
+.card-upper{
+    height: 50%;
+    /* background-color: pink; */
+    display: flex;
+    justify-content: center;
+}
+
+.card-upper form {
+    display: none; 
+}
+
+.card-upper img {
+    display: block; 
+}
+
+
+@media (max-width: 1200px) {
+    .all-blogs {
+        grid-template-columns: 1fr 1fr; 
+    }
+}
+
+@media (max-width: 768px) {
+    .all-blogs {
+        grid-template-columns: 1fr; 
+    }
+}
+
+@media (max-width: 460px) {
+    .all-blogs {
+        grid-template-columns: 1fr; 
+    }
+    .card{
+        width: 15rem;
+        height: 16rem;
+    }
+}
+
+.check-box{
+    width: 1.2rem;
+    height: 1.2rem;
 }

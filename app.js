@@ -5,6 +5,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const mongoose = require("mongoose");
 const { restrictToLoggedinUserOnly } = require('./middlewares/auth')
+const { checkAuth } = require("./middlewares/checkAuth");
 
 const Topic = require('./models/topic')
 
@@ -28,6 +29,9 @@ app.use(cookieParser());
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
+app.use(checkAuth);
+app.use('/user', userRoute )
+app.use('/blog', restrictToLoggedinUserOnly, blogRoute ) 
 
 app.get("/", async (req, res) => {
     const topics = await Topic.find({})
@@ -36,12 +40,14 @@ app.get("/", async (req, res) => {
     })
 })
 
+app.post('/submit-data', (req, res) => {
+    const { name } = req.body;
+    console.log('Received name:', name);
+    res.send('Form submitted successfully!');
+});
+
 app.get("/create-topic", (req, res) => {
     res.render('createTopic.ejs')
 })
-
-app.use('/user', userRoute )
-app.use('/blog', restrictToLoggedinUserOnly, blogRoute ) 
-
 
 app.listen(PORT, () =>{ console.log(`listening on port: ${PORT}`)})

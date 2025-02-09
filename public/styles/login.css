@@ -10,9 +10,13 @@
     background: linear-gradient(45deg, orange, white);
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    /* gap: 4rem; */
     justify-content: center;
     align-items: center;
+}
+
+h1{
+    margin-bottom: 6rem;
 }
 
 form{
@@ -21,4 +25,24 @@ form{
     /* background-color: grey; */
     background-color: rgba(128, 128, 128, 0.9);
     border-radius: 5%;
+}
+
+span{
+    cursor: pointer;
+    font-weight: 500;
+    color: blue;
+}
+
+.login-error{
+    font-size: 1.1rem;
+    padding: 4px;
+    color: white;
+    background-color: rgb(255, 101, 101);
+    border : 1px solid red;
+    opacity: 0; /* Start invisible */
+    transition: opacity 0.5s ease-in;
+}
+
+.login-error.show {
+    opacity: 1; /* Fully visible */
 }

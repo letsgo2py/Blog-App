@@ -7,14 +7,45 @@
   <body>
 
     <div class="navbar">
+
       <div class="nav-left">
-        <h1>Blog App</h1>
+        <h1>Bloggish App</h1>
       </div>
+
       <div class="nav-right">
-        <a href="/blog/show">My Blogs</a>
-        <a href="/blog/feed">Feed</a>
-        <a href="/user/register">Register</a>
-        <a href="/user/login">Login</a>
+        <% if (isLogin) { %>
+          <a class="hideOnMobile" href="/blog/show">My Blogs</a>
+          <a class="hideOnMobile" href="/blog/feed">Feed</a>
+          <!-- <a onclick=Logout() href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+            </svg>
+          </a>
+        <div id="Logout-div">
+          <p class="cancel-sign" onclick="toggleLogoutDiv(event)">X</p>
+          <a id="logout" onclick=Logout() href="/user/logout">LogOut</a>
+        </div> -->
+        <a onclick=Logout() href="#"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 16 16">
+          <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
+          <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1"/>
+          </svg>
+        </a>
+      <div id="Logout-div">
+        <p class="cancel-sign" onclick="toggleLogoutDiv(event)">X</p>
+        <a id="logout" onclick=Logout() href="/user/logout">LogOut</a>
+      </div>
+        <% } else {%>
+          <a class="hideOnMobile" href="/user/register">Register</a>
+          <a class="hideOnMobile" href="/user/login">Login</a>
+        <% } %>
+        <a class="menu-button" onclick=showSidebar() href="#"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" fill="#ffffff"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></a>
+      </div>
+      <div class="sidebar">
+        <a onclick=hideSidebar() href="#"><svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 -960 960 960" width="30px" ><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg></a>
+        <a class="side-btns" href="/blog/show">My Blogs</a>
+        <a class="side-btns" href="/blog/feed">Feed</a>
+        <a class="side-btns" href="/user/register">Register</a>
+        <a class="side-btns" href="/user/login">Login</a>
       </div>
     </div>
     
@@ -31,7 +62,7 @@
         </div>
       </div>
 
-      <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 mx-5">
+      <!-- <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5 mx-5">
         <div class="col">
           <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-4 shadow-lg" style="background-image: url('/images/laptop.jpg');">
             <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
@@ -55,7 +86,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </div> -->
       
     <div class="main-content mt-5">
       <div class="side-group">
@@ -81,5 +112,48 @@
     <%- include('./partials/footer.ejs') %>
 
   </div>
+    <script>
+      function showSidebar(){
+          const sidebar = document.querySelector('.sidebar')
+          sidebar.style.display = 'flex'
+      }
+      function hideSidebar(){
+          const sidebar = document.querySelector('.sidebar')
+          sidebar.style.display = 'none'
+      }
+      // function Logout(){
+      //     const logout = document.querySelector('#Logout-div')
+      //     const logoutA = document.querySelector('#Logout-div a')
+      //     logout.style.display = "flex";
+      //     logout.style.flexDirection = "column";
+      //     logout.style.alignItems = "center";
+      //     logout.style.justifyContent = "center";
+      //     logoutA.style.display = 'flex'
+      // }
+      
+
+      function Logout(event) {
+        event.preventDefault(); // Prevents the default action of the anchor tag
+
+        const logoutDiv = document.querySelector('#Logout-div');
+
+        // Toggle display between 'none' and 'flex'
+        if (logoutDiv.style.display === "flex") {
+            logoutDiv.style.display = "none";
+        } else {
+            logoutDiv.style.display = "flex";
+            logoutDiv.style.flexDirection = "column";
+            logoutDiv.style.alignItems = "center";
+            logoutDiv.style.justifyContent = "center";
+        }
+      }
+
+      // Function to close the logout div when clicking the cancel sign
+      function toggleLogoutDiv(event) {
+          event.stopPropagation(); // Prevents event bubbling
+          document.querySelector('#Logout-div').style.display = "none";
+      }
+
+    </script>
     </body>
     </html>

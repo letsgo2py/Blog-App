@@ -15,12 +15,36 @@ body, h1 {
     justify-content: space-between;
 }
 
+.nav div{
+    padding-top: 4rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.nav-content{
+    font-family: "Lavishly Yours", serif;
+    font-size: 3rem;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.nav p a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.5rem;
+}
+
 .home-btn{
     background-color: rgb(42, 41, 41);
     color: white;
     height: 3rem;
     width: 3rem;
     border-radius: 1rem;
+}
+
+.home-btn a{
+    color: white;
 }
 
 /* Feed component styles */
@@ -35,6 +59,11 @@ body, h1 {
     background-color: #333;
     color: white;
     position: relative; /* Needed for absolute positioning of the like button */
+}
+
+.feed-btn a{
+    color: white;
+    text-decoration: none;
 }
 
 .feed-image {
@@ -54,6 +83,7 @@ body, h1 {
 
 .feed-content p {
     margin: 0 0 2rem 0; /* Space for the like button */
+    color: rgb(221, 95, 22);
 }
 
 .like-button {
@@ -71,7 +101,7 @@ body, h1 {
 
 .user-name {
     display: inline;
-    border: solid blue 2px;
+    color: skyblue;
 }
 
 .topics{
@@ -103,4 +133,25 @@ body, h1 {
 
 .topics a:hover{
     color: #f1de0d;
+}
+
+@media (max-width: 500px) {
+    .like-button {
+        width: 3rem;
+        height: 2rem;
+        position: absolute;
+        padding: 0.5rem 1rem;
+        margin: auto 10px 8px auto;
+        border-radius: 0.2rem;
+        background-color: green;
+    }
+
+    .like-link {
+        font-size: 0; /* hides text */
+    }
+    
+    .like-link::before {
+        content: ❤; /* keeps the heart icon */
+        font-size: 1.5rem; /* adjust icon size */
+    }
 }

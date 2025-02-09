@@ -8,6 +8,9 @@
 <body>
     <div class="container-1">
         <h1>Login</h1>
+        <% if (locals.error) { %>
+          <p id="error" class="login-error"><%=locals.error %></p>
+        <% } %>
         <form action="/user/login" method="POST">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -21,4 +24,13 @@
           </form>
     </div>
 </body>
+<script>
+  // Add the 'show' class to trigger the transition
+  document.addEventListener("DOMContentLoaded", () => {
+    const errorElement = document.getElementById("error");
+    setTimeout(() => {
+      errorElement.classList.add("show");
+    }, 100); // Small delay to ensure the transition effect is noticeable
+  });
+</script>
 </html>
