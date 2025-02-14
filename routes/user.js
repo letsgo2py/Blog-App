@@ -2,8 +2,6 @@ const { Router } = require("express")
 const { handleSignup, handleLogin } = require("../controllers/user")
 
 
-const User = require("../models/user")
-
 const router = Router();
 
 router.get("/login", (req, res) => {

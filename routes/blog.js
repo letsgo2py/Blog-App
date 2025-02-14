@@ -73,6 +73,7 @@ router.get("/feed", async (req, res) => {
         res.render('feed.ejs', {
             data: data,
             topics: topics,
+            HighlightTopic: "All",
         })
     }catch(error){
         console.error('Error fetching blogs:', error);
@@ -168,6 +169,7 @@ router.get('/feed/:name', async (req, res) => {
         res.render("feed.ejs",{
             topics: topics,
             data: data,
+            HighlightTopic: topic_name,
         });
     } catch (error) {
         console.error(error);
