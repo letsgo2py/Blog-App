@@ -19,7 +19,7 @@
     </div>
 
     <div class="topics">
-        <a href="/blog/feed">All</a>
+        <a class = "topic" id = "All" href="/blog/feed">All</a>
         <% if(locals.topics){ %>
             <% topics.forEach(topic => { %>
               <a id="<%=topic.name %>" href="/blog/feed/<%=topic.name %>"><%= topic.name %></a>
@@ -38,7 +38,7 @@
                     <div>
                         <h5 class="user-name"><%= blog.username %></h5>
                         <h2><%= blog.title %></h2>
-                        <p><%= blog.content %></p>
+                        <p style="white-space: pre-wrap;"><%= blog.content %></p>
                     </div>
                 </div>
                 <div class="feed-btn">
@@ -60,23 +60,17 @@
     </div> -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            const topics = document.querySelectorAll(".topics a");
-
-            // Check localStorage to see if a topic is highlighted
-            const highlightedTopicId = localStorage.getItem('highlightedTopic');
-            if (highlightedTopicId) {
-                const highlightedTopic = document.getElementById(highlightedTopicId);
-                if (highlightedTopic) {
-                    highlightedTopic.classList.add("highlight");
-                }
-            }
-
-            topics.forEach(t => {
-                t.addEventListener("click", (event) => {
-                    // Store the id of the clicked topic in localStorage
-                    localStorage.setItem('highlightedTopic', t.id);
-                });
+            // Get the HighlightTopic from EJS local variables
+            const highlightTopic = "<%= HighlightTopic %>";
+            document.querySelectorAll('.topic').forEach(topic => {
+                topic.style.border = "none"; 
             });
+
+            const highlightElement = document.getElementById(highlightTopic);
+            if (highlightElement) {
+                highlightElement.style.border = "4px solid rgb(217, 255, 3)"; 
+            }
+ 
         });
     </script>
 </body>

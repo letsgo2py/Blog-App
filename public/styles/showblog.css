@@ -9,15 +9,15 @@
     grid-template-rows: 300px auto; */
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     grid-auto-rows: auto;
-    gap: 10px;
+    gap: 15px;
     padding: 20px;
     place-items: center;
 }
 
 .card{
-    border: 1px solid blue;
-    width: 18rem;
-    height: 18rem;
+    border: 5px solid blue;
+    width: 25rem;
+    height: 25rem;
     word-wrap: break-word; /* Ensures long words break to avoid overflow */
     box-shadow: 4px 6px rgba(0, 0, 0, 0.2);
     position: relative;

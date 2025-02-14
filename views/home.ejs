@@ -31,8 +31,12 @@
           </svg>
         </a>
       <div id="Logout-div">
-        <p class="cancel-sign" onclick="toggleLogoutDiv(event)">X</p>
         <a id="logout" onclick=Logout() href="/user/logout">LogOut</a>
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+          <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+          <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+        </svg>
+        <p class="cancel-sign" onclick="toggleLogoutDiv(event)">X</p>
       </div>
         <% } else {%>
           <a class="hideOnMobile" href="/user/register">Register</a>
@@ -121,39 +125,24 @@
           const sidebar = document.querySelector('.sidebar')
           sidebar.style.display = 'none'
       }
-      // function Logout(){
-      //     const logout = document.querySelector('#Logout-div')
-      //     const logoutA = document.querySelector('#Logout-div a')
-      //     logout.style.display = "flex";
-      //     logout.style.flexDirection = "column";
-      //     logout.style.alignItems = "center";
-      //     logout.style.justifyContent = "center";
-      //     logoutA.style.display = 'flex'
-      // }
-      
 
       function Logout(event) {
-        event.preventDefault(); // Prevents the default action of the anchor tag
-
         const logoutDiv = document.querySelector('#Logout-div');
 
-        // Toggle display between 'none' and 'flex'
         if (logoutDiv.style.display === "flex") {
             logoutDiv.style.display = "none";
         } else {
             logoutDiv.style.display = "flex";
-            logoutDiv.style.flexDirection = "column";
+            logoutDiv.style.flexDirection = "row";
             logoutDiv.style.alignItems = "center";
             logoutDiv.style.justifyContent = "center";
         }
       }
 
-      // Function to close the logout div when clicking the cancel sign
       function toggleLogoutDiv(event) {
-          event.stopPropagation(); // Prevents event bubbling
           document.querySelector('#Logout-div').style.display = "none";
       }
 
     </script>
-    </body>
-    </html>
+</body>
+</html>
