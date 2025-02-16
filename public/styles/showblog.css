@@ -17,7 +17,7 @@
 .card{
     border: 5px solid blue;
     width: 25rem;
-    height: 25rem;
+    height: 20rem;
     word-wrap: break-word; /* Ensures long words break to avoid overflow */
     box-shadow: 4px 6px rgba(0, 0, 0, 0.2);
     position: relative;
@@ -51,7 +51,7 @@
 
 
 .coverimages {
-    height: 8rem;
+    height: 100%;
     width: 18rem;
     object-fit: contain;
 }
