@@ -16,7 +16,7 @@ async function handleLogin(req, res) {
     const {email, password } = req.body;
     //const user = await User.findOne({ email, password })
     const user = await User.matchPassword(email, password)
-    if(!user)
+    if(user.error)
         return res.render("login.ejs", {
             error: "Invalid Email or Password"
         })
