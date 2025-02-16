@@ -40,25 +40,30 @@
                 <% } else{ %>
                     <% blogs.forEach(blog => { %>
                         <div class="card">
-                            <% if (blog.coverImageURL) { %>
+                            <div class="card-upper">
                                 <img class = coverimages id = <%= blog._id %> alt = "cover Image" src = <%= blog.coverImageURL %> />                       
-                            <% } else{%>
                                 <form action="/blog/uploads/<%= blog._id %>" id = <%= blog._id %> method = "POST" enctype="multipart/form-data">
-                                    <input type="file" name="blog-cover"/>
-                                    <button type="submit">Upload</button>
+                                    <input type="file" name="blog-cover" id="blog-cover-<%= blog._id %>"/>
+                                    <button type="submit" onclick="return validateFile('<%= blog._id %>')">Upload</button>
                                 </form>                   
-                            <%}%>                       
+                            </div>                     
                             <div class="card-body">
-                                <h5 class="card-title"><%= blog.title %></h5>
-                                <% if(blog.content.length > 60){ %>
+                                <% if (blog.title.length > 30) { %>
+                                    <h5 class="card-title"><%= blog.title.substr(0, 30) %>...</h5>
+                                <% } else {%>
+                                    <h5 class="card-title"><%= blog.title %></h5>
+                                <% } %>
+                                <% if(blog.content.includes('\n')) {%>
+                                    <p class="card-text"><%= blog.content.substr(0, 60) %>...</p>
+                                <% }else if(blog.content.length > 60){ %>
                                     <p class="card-text"><%= blog.content.substr(0, 60) %>...</p>
                                 <% }else{ %>
-                                    <p class="card-text"><%= blog.content %></p>
+                                    <p class="card-text" style="white-space: pre-wrap;"><%= blog.content %></p>
                                 <% } %>
                                 <div class="btn-div">
                                     <a href="/blog/<%= blog._id %>" id = "view-btn" class="btn btn-primary">View</a>
                                     <a href="/blog/delete/<%= blog._id %>" id = "delete-btn" class="btn btn-primary">Delete</a>
-                                    <input type="checkbox" id="<%= blog._id %>" name="public" <%= blog.isPublic ? 'checked' : '' %> >
+                                    <input type="checkbox" class="check-box" id="<%= blog._id %>" name="public" <%= blog.isPublic ? 'checked' : '' %> >
                                 </div>
                             </div>
                         </div>
